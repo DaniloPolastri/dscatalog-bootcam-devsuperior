@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -35,5 +36,14 @@ public class CategoryService {
 
         return listDto;*/
 
+    }
+
+    @Transactional(readOnly = true)
+    public CategoryDTO findById(Long id) {
+        // Optional e para evitar de voce trabalhar com o valor nulo
+        Optional<Category> obj = respository.findById(id);
+        Category entity = obj.get();
+
+        return new CategoryDTO(entity);
     }
 }

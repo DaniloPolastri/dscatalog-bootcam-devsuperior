@@ -8,6 +8,8 @@ import com.devsuperior.dscatalog.services.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,15 +25,21 @@ public class CategoryService {
     private CategoryRepository respository;
 
     @Transactional(readOnly = true) // evitar q eu faco lock no banco de dados e melhorar a perfomace, operacoes somente letiura lembrar de por readOnly = true
-    public List<CategoryDTO> findAll(){
+    public Page<CategoryDTO> findAllPaged(PageRequest pageRequest){
 
 
 
         // converter a lista normal para stream que permite trabalhar com funcoes de alta ordem por exemplo lambda
         // Map = ela transforma cada elemento original em uma outra coisa ela aplica uma funcao a cada elemento da sua lista
         // Collect = transforma uma stream novamente para uma lista
-        List<Category> list = respository.findAll();
-        return list.stream().map(x -> new CategoryDTO(x)).collect(Collectors.toList());
+        //List<Category> list = respository.findAll();
+
+        Page<Category> list = respository.findAll(pageRequest);
+
+        //list.stream().map(x -> new CategoryDTO(x)).collect(Collectors.toList());
+
+        //Page ja e do tipo stream
+        return list.map(x -> new CategoryDTO(x));
 
         /*List<CategoryDTO> listDto = new ArrayList<>();
 

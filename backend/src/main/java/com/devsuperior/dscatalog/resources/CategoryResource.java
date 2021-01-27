@@ -22,7 +22,7 @@ public class CategoryResource {
     @Autowired
     private CategoryService service;
 
-    //RequestParam e para ter parametros na url opcionais 
+    //RequestParam e para ter parametros na url opcionais
     @GetMapping
     public ResponseEntity<Page<CategoryDTO>> findAll(
             @RequestParam(value = "page", defaultValue = "0") Integer page,

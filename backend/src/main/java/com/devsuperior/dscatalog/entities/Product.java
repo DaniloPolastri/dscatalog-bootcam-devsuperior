@@ -17,15 +17,23 @@ public class Product implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+    
+    //macete para mapear no banco de dados nao como varchar mais como TEXT para aceitar texto mais longo
+    @Column(columnDefinition = "TEXT")
     private String description;
     private Double price;
-    private String imgURL;
+    private String img_URL;
 
     // qualquer campo se for data tem q por esse anotation para amazenar em UTC
     @Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
     private Instant date;
 
-
+    @ManyToMany
+    @JoinTable(
+       name="tb_product_category",
+       joinColumns = @JoinColumn(name = "product_id"),
+       inverseJoinColumns = @JoinColumn(name = "category_id")
+    )
     Set<Category> categories = new HashSet<>();
 
     public Product(){}
@@ -35,7 +43,7 @@ public class Product implements Serializable {
         this.name = name;
         this.description = description;
         this.price = price;
-        this.imgURL = imgURL;
+        this.img_URL = imgURL;
         this.date = date;
     }
 
@@ -71,12 +79,12 @@ public class Product implements Serializable {
         this.price = price;
     }
 
-    public String getImgURL() {
-        return imgURL;
+    public String getImg_URL() {
+        return img_URL;
     }
 
-    public void setImgURL(String imgURL) {
-        this.imgURL = imgURL;
+    public void setImg_URL(String img_URL) {
+        this.img_URL = img_URL;
     }
 
     public Instant getDate() {

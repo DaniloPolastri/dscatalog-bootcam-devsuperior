@@ -17,7 +17,7 @@ public class Product implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    
+
     //macete para mapear no banco de dados nao como varchar mais como TEXT para aceitar texto mais longo
     @Column(columnDefinition = "TEXT")
     private String description;

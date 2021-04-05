@@ -1,7 +1,8 @@
 import React from "react";
 import './core/assets/styles/custom.scss'
 import './app.scss'
-import NavBar from "./core/components/navbar";
+import Routes from "./Routes";
+
 
 const App = () => {
 
@@ -11,7 +12,7 @@ const App = () => {
     * */
 
     return (
-       <NavBar/>
+       <Routes />
     );
 }
 

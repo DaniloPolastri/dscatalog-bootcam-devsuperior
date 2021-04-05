@@ -1,4 +1,5 @@
 import './style.scss';
+import {Link, NavLink} from 'react-router-dom';
 
 
 // Offset - ele da um recuo na esquerda
@@ -6,21 +7,21 @@ import './style.scss';
 const NavBar = () => (
     <nav className="row bg-primary main-nav">
         <div className="col-2">
-            <a href="#" className="nav-log-text">
+            <Link to="/" className="nav-log-text">
                 <h4>DS Catalog</h4>
-            </a>
+            </Link>
         </div>
 
         <div className="col-6 offset-2">
             <ul className="main-menu">
                 <li>
-                    <a href="#" className="active">HOME</a>
+                    <NavLink to="/" activeClassName="active" exact>HOME</NavLink>
                 </li>
                 <li>
-                    <a href="#">CATALOGO</a>
+                    <NavLink to="/catalog" activeClassName="active">CATALOGO</NavLink>
                 </li>
                 <li>
-                    <a href="#">ADMIN</a>
+                    <NavLink to="/admin" activeClassName="active">ADMIN</NavLink>
                 </li>
             </ul>
         </div>

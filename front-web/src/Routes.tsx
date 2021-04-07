@@ -3,6 +3,7 @@ import Home from "./pages/home";
 import Catalog from "./pages/catalog";
 import Admin from "./pages/admin";
 import NavBar from "./core/components/navbar";
+import ProductDetails from "./pages/catalog/components/ProductsDetails";
 
 //BrowserRouter - encapsular toda a nossa aplicacao
 //Switch - Vai fazer a magina entre decidir qual rota ele deve rendenrizar
@@ -15,8 +16,11 @@ const Routes = () => (
             <Route path="/" exact>
                 <Home />
             </Route>
-            <Route path="/catalog">
+            <Route path="/products" exact>
                 <Catalog />
+            </Route>
+            <Route path="/products/:productId">
+                <ProductDetails />
             </Route>
             <Route path="/admin">
                 <Admin />

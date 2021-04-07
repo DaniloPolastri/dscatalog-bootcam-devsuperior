@@ -12,4 +12,10 @@
 
 .catalog-products{
   margin-top: 46px;
+  display: grid;
+  // repeat recebe 2 elemento auto-fit: distribuir os elemento ao decorrer da linha, porem ele expande os itens para caber no espaco disponivel/ auto-fill: ele preenche os espaco disponivel com quantos item dar,  o segundo e o tamanho da coluna
+  grid-template-columns: repeat(auto-fill, 250px);
+  // distruicao de espacamento verticalmente e horizontalmente
+  grid-gap: 33px 20px;
+  justify-content: space-between;
 }

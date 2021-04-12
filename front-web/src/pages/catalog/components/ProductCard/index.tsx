@@ -10,7 +10,6 @@ const ProductCard = () => (
            <h6 className="product-name">Computador Desktop - Intel Core i7</h6>
            <ProductPrice price="2.778,00"/>
        </div>
-
     </div>
 )
 

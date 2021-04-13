@@ -4,12 +4,13 @@ import {Link} from 'react-router-dom'
 import ProductCard from "./components/ProductCard";
 import {makeRequest} from "../../core/utils/request";
 import {ProductsResponse} from "../../core/types/Product";
+import ProductCardLoader from "./components/ProductCardLoader";
 
 const Catalog = () => {
     //2 passo: quando a lista de produto estiver disponivel,popular um estado no componente, e listar os produto dinamicamente
     //variavel que siboniza oque tem no valor estado, funcao que vai alterar o valor do estado
     const [productsResponse, setProductResponse] = useState<ProductsResponse>();
-    console.log(productsResponse);
+    const [isLoading, setIsLoading] = useState(false);
 
 
     //1 passo : quando o componente iniciar, buscar a lista de produtos
@@ -24,10 +25,15 @@ const Catalog = () => {
             page: 0,
             linesPerPage: 12
         }
-
+        //iniciar o Loader
+        setIsLoading(true);
         makeRequest({url: '/products', params})
             /*quando a minha requisicao termina estou amarzenando todo o payload que o back end mandou estou guardando dentro da variavel productsResponse*/
-            .then(response => setProductResponse(response.data));
+            .then(response => setProductResponse(response.data))
+            .finally(() => {
+                //finalizar o loader
+                setIsLoading(false);
+            })
     }, [])
 
 
@@ -46,11 +52,13 @@ const Catalog = () => {
             <h1 className="catalog-title">Catálago de produtos</h1>
 
             <div className="catalog-products">
-                {productsResponse?.content.map(product => (
-                    <Link to={`/products/${product.id}`} key={product.id}>
-                        <ProductCard product={product}/>
-                    </Link>
-                ))}
+                { isLoading ? <ProductCardLoader /> : (
+                    productsResponse?.content.map(product => (
+                        <Link to={`/products/${product.id}`} key={product.id}>
+                            <ProductCard product={product}/>
+                        </Link>
+                    ))
+                )}
             </div>
          </div>
     );

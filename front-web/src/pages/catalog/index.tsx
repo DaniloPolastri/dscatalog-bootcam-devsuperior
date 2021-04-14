@@ -1,10 +1,10 @@
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import './styles.scss';
 import {Link} from 'react-router-dom'
 import ProductCard from "./components/ProductCard";
-import {makeRequest} from "../../core/utils/request";
-import {ProductsResponse} from "../../core/types/Product";
-import ProductCardLoader from "./components/ProductCardLoader";
+import {makeRequest} from "core/utils/request";
+import {ProductsResponse} from "core/types/Product";
+import ProductCardLoader from "./components/Loaders/ProductCardLoader";
 
 const Catalog = () => {
     //2 passo: quando a lista de produto estiver disponivel,popular um estado no componente, e listar os produto dinamicamente

@@ -5,13 +5,14 @@ import ProductCard from "./components/ProductCard";
 import {makeRequest} from "core/utils/request";
 import {ProductsResponse} from "core/types/Product";
 import ProductCardLoader from "./components/Loaders/ProductCardLoader";
+import Pagination from "core/Pagination";
 
 const Catalog = () => {
     //2 passo: quando a lista de produto estiver disponivel,popular um estado no componente, e listar os produto dinamicamente
     //variavel que siboniza oque tem no valor estado, funcao que vai alterar o valor do estado
     const [productsResponse, setProductResponse] = useState<ProductsResponse>();
     const [isLoading, setIsLoading] = useState(false);
-
+    const [activePage, setActivePage] = useState(0);
 
     //1 passo : quando o componente iniciar, buscar a lista de produtos
     useEffect(() => {
@@ -22,7 +23,7 @@ const Catalog = () => {
             .then(response => console.log(response));*/
 
         const params = {
-            page: 0,
+            page: activePage,
             linesPerPage: 12
         }
         //iniciar o Loader
@@ -34,7 +35,7 @@ const Catalog = () => {
                 //finalizar o loader
                 setIsLoading(false);
             })
-    }, [])
+    }, [activePage])
 
 
 
@@ -60,6 +61,13 @@ const Catalog = () => {
                     ))
                 )}
             </div>
+            {
+                productsResponse && (
+                    <Pagination totalPages={productsResponse?.totalPages}
+                    activePage={activePage}
+                    onChange={page => setActivePage(page)}
+                    />
+                )}
          </div>
     );
 }

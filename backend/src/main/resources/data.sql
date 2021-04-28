@@ -1,3 +1,13 @@
+INSERT INTO tb_user (first_name, last_name, email, password) VALUES ('Alex', 'Brown', 'alex@gmail.com', '$2a$10$eACCYoNOHEqXve8aIWT8Nu3PkMXWBaOxJ9aORUYzfMQCbVBIhZ8tG');
+INSERT INTO tb_user (first_name, last_name, email, password) VALUES ('Maria', 'Green', 'maria@gmail.com', '$2a$10$eACCYoNOHEqXve8aIWT8Nu3PkMXWBaOxJ9aORUYzfMQCbVBIhZ8tG');
+
+INSERT INTO tb_role (authority) VALUES ('ROLE_OPERATOR');
+INSERT INTO tb_role (authority) VALUES ('ROLE_ADMIN');
+
+INSERT INTO tb_user_role (user_id, role_id) VALUES (1, 1);
+INSERT INTO tb_user_role (user_id, role_id) VALUES (2, 1);
+INSERT INTO tb_user_role (user_id, role_id) VALUES (2, 2);
+
 INSERT INTO tb_category (name, created_At) VALUES ('Livros', NOW());
 INSERT INTO tb_category (name, created_At) VALUES ('Eletrônicos', NOW());
 INSERT INTO tb_category (name, created_At) VALUES ('Computadores', NOW());
@@ -65,3 +75,5 @@ INSERT INTO tb_client (NAME, CPF, CREATED_AT, BIRTH_DATE, CHILDREN, INCOME) VALU
 INSERT INTO tb_client (NAME, CPF, CREATED_AT, BIRTH_DATE, CHILDREN, INCOME) VALUES ('Fábio Joaquim Ferreira', '34983584218', NOW(), TIMESTAMP WITH TIME ZONE '1943-10-09T03:00:00Z', 3, 6000.50);
 INSERT INTO tb_client (NAME, CPF, CREATED_AT, BIRTH_DATE, CHILDREN, INCOME) VALUES ('Kamilly Esther Hadassa Castro', '17579530864', NOW(), TIMESTAMP WITH TIME ZONE '1965-05-27T03:00:00Z', 5, 20000.50);
 INSERT INTO tb_client (NAME, CPF, CREATED_AT, BIRTH_DATE, CHILDREN, INCOME) VALUES ('Carla Alice Brenda Almada', '50619427108', NOW(), TIMESTAMP WITH TIME ZONE '1956-10-21T03:00:00Z', 0, 15000.50);
+
+

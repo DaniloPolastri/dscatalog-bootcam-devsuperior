@@ -43,6 +43,7 @@ public class ProductDTO implements Serializable {
         this.date = entity.getDate();
     }
 
+    //popular a lista de categoria a categoria DTO
     public ProductDTO(Product entity, Set<Category> categories){
         this(entity);
         categories.forEach(cat -> this.categories.add(new CategoryDTO(cat)));

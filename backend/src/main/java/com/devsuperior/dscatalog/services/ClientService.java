@@ -25,8 +25,6 @@ public class ClientService {
     @Transactional(readOnly = true) // evitar q eu faco lock no banco de dados e melhorar a perfomace, operacoes somente letiura lembrar de por readOnly = true
     public Page<ClientDTO> findAllPaged(PageRequest pageRequest){
 
-
-
         // converter a lista normal para stream que permite trabalhar com funcoes de alta ordem por exemplo lambda
         // Map = ela transforma cada elemento original em uma outra coisa ela aplica uma funcao a cada elemento da sua lista
         // Collect = transforma uma stream novamente para uma lista

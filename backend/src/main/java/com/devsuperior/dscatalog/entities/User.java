@@ -1,5 +1,7 @@
 package com.devsuperior.dscatalog.entities;
 
+import org.springframework.context.annotation.Configuration;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.HashSet;
@@ -18,7 +20,10 @@ public class User implements Serializable {
     private Long id;
     private String firstName;
     private String lastName;
+
+    @Column(unique = true)
     private String email;
+
     private String password;
 
 
@@ -32,7 +37,8 @@ public class User implements Serializable {
         this.password = password;
     }
 
-    @ManyToMany
+    //Forca que sempre buscar um usuario no banco ja vem vim pindurado nele os Roles o perfil do usuario.
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name="tb_user_role",
             joinColumns = @JoinColumn(name = "user_id"),
@@ -80,9 +86,8 @@ public class User implements Serializable {
         this.password = password;
     }
 
-
-    public void setRoles(Set<Role> roles) {
-        this.roles = roles;
+    public Set<Role> getRoles() {
+        return roles;
     }
 
     @Override
